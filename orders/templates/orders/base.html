@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'orders/css/styles.css' %}"/>
+        <script src="{% static 'orders/order.js' %}">	</script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+    <img src="{% static 'orders/images/pinocchio_72.gif' %}"  class="d-inline-block align-top" alt="">
+       <p class="h1 text-white">Pinocchio's Pizza & Subs</p>
+       <span class="navbar-text">
+        74 Winthrop Street
+        <br/>
+        Harvard Square
+        <br/>
+        617-876-4897
+  </span>
+</nav>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

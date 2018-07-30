@@ -1,0 +1,52 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Menu:Pinocchio's Pizza & Subs
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Menu</h1>
+        {% for ic, sc in menuItems.items %}
+        <div class = "card">
+            <div class="card-header text-center h3">
+                    {{ic}}
+              </div>
+                    {% for scat, ilist in sc.items %}
+                    {% if  scat != 'Toppings' %}
+                    <div class = "card">
+                        <div class="card-header text-center h5">
+                            {{scat}}
+                          </div>
+                            <div class="card-body text-left">
+                                <table class="table table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Size</th>
+                                          <th scope="col">Unit Price</th>
+                                          <th scope="col">Add-ons (Toppings)</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                    {% for item in ilist %}
+                                    <tr id="{{ item.id }}" class="table-row" data-itemid="{{ item.id }}"
+                                            data-itemcat="{{ item.itemCategory }}"
+                                            data-nooftop="{{item.noOfTopping}} ">
+                                        <th scope="row"><strong>{{ item.itemName }}</strong></th>
+                                        <td>{{ item.get_itemSize_display }}</td>
+                                        <td>{{ item.unitPrice }}</td>
+                                        <td>{{item.noOfTopping}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                     </tbody>
+                                </table>
+                            </div>
+                    </div> <!--Card -->
+                    {% endif %}
+                    {% endfor %}
+        </div> <!--Card -->
+        {% endfor %}
+    </div> <!--Container -->
+
+{% endblock %}
