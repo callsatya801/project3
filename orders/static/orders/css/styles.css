@@ -1,3 +1,10 @@
 body {
     font-family: sans-serif;
+    background: url('../images/pizza.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+     background-size: cover;
+    -o-background-size: cover;
+    opacity: 0.95;
 }
+

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     //set_Your_channel_links();
+       /*
                     document.querySelectorAll('.table-row').forEach(button => {
                     button.onclick = () => {
                         console.log(button.dataset.itemid);
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return false;
                         };
                     });
+           */
 
 
      $('#addToCart').on('show.bs.modal', function (event) {
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toppings = s_toppings;
        }
        if(toppings){
+           toppingAreaChild.innerHTML='<strong>Choice of Toppings:</strong>';
            console.log(`toppingCount : ${toppingCount}`);
            for(var idx =0; idx < toppings.length; idx++)
             {
@@ -59,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkbox.value = toppings[idx][1]+'($'+toppings[idx][2] +')';
                 checkbox.id = toppings[idx][0];
                 checkbox.onclick= ()=> {
-                        console.log('Inside validateToppingCount');
-                        console.log(toppingCount);
+                        //console.log('Inside validateToppingCount');
+                        //console.log(toppingCount);
                         var checkboxes = document.getElementsByName("topping");
                         var numberOfCheckedItems = 0;
                         for(var i = 0; i < checkboxes.length; i++)
@@ -70,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         if(numberOfCheckedItems >= toppingCount)
                         {
-                            console.log('we have reached the limit - of Toppings');
+                            //console.log('we have reached the limit - of Toppings');
                             // loop thru and disable all the unchecked
                             for (var i=0; i< checkboxes.length; i++)
                              {
@@ -97,6 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
        }
       // return false;
+        // adding inside the model handler - so we can extract the values needed.
+        var addToCartbtn = document.querySelector('#addToCartbtn');
+             addToCartbtn.onclick = () => {
+                        console.log('inside add to cart button');
+                        console.log(button.data('itemname'));
+                        console.log(button.data('itemid'));
+                        // Post the data to the back-end Order Table
+                        // Update the Cart
+
+                        };
+
     });
 
 });
