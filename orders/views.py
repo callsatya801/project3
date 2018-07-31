@@ -8,7 +8,7 @@ import json
 
 # Create your views here.
 def index(request):
-
+    # Exclude Toppings
     menuItems = {}
     itemCategory = MenuItem.objects.values_list('itemCategory', flat=True).distinct()
     for ic in itemCategory:
@@ -16,11 +16,16 @@ def index(request):
         #print(f"Subcategories:{subCategory}")
         itemDict ={}
         for sc in subCategory:
-            itemGroup = MenuItem.objects.filter(itemCategory=ic, itemSubCategory=sc).values_list('itemGroup', flat=True).distinct()
-            items=  MenuItem.objects.filter(itemCategory=ic,itemSubCategory=sc)
+            #itemGroup = MenuItem.objects.exclude(itemSubCategory="Toppings").filter(itemCategory=ic, itemSubCategory=sc).values_list('itemGroup', flat=True).distinct()
+            items=  MenuItem.objects.exclude(itemSubCategory="Toppings").filter(itemCategory=ic,itemSubCategory=sc)
             itemDict[sc] = items
             menuItems[ic]=itemDict
 
-    context = {'menuItems':menuItems}
+    # Include Only Toppings
+    Toppings = {}
+    items=  MenuItem.objects.filter(itemSubCategory="Toppings")
+    Toppings=items
+
+    context = {'menuItems':menuItems, 'toppings':Toppings}
     return render(request, "orders/order.html", context)
     #return HttpResponse(menuItems)
